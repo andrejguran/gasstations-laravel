@@ -1,0 +1,255 @@
+
+<!-- saved from url=(0053)https://raw.github.com/laravel/laravel/master/artisan -->
+<html style="overflow: auto;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style type="text/css"></style></head><body class=""><pre style="word-wrap: break-word; white-space: pre-wrap;">#!/usr/bin/env php
+&lt;?php
+
+/*
+|--------------------------------------------------------------------------
+| Register The Auto Loader
+|--------------------------------------------------------------------------
+|
+| Composer provides a convenient, automatically generated class loader
+| for our application. We just need to utilize it! We'll require it
+| into the script here so that we do not have to worry about the
+| loading of any our classes "manually". Feels great to relax.
+|
+*/
+
+require __DIR__.'/bootstrap/autoload.php';
+
+/*
+|--------------------------------------------------------------------------
+| Turn On The Lights
+|--------------------------------------------------------------------------
+|
+| We need to illuminate PHP development, so let's turn on the lights.
+| This bootstrap the framework and gets it ready for use, then it
+| will load up this application so that we can run it and send
+| the responses back to the browser and delight these users.
+|
+*/
+
+$app = require_once __DIR__.'/bootstrap/start.php';
+
+/*
+|--------------------------------------------------------------------------
+| Load The Artisan Console Application
+|--------------------------------------------------------------------------
+|
+| We'll need to run the script to load and return the Artisan console
+| application. We keep this in its own script so that we will load
+| the console application independent of running commands which
+| will allow us to fire commands from Routes when we want to.
+|
+*/
+
+$app-&gt;setRequestForConsoleEnvironment();
+
+$artisan = Illuminate\Console\Application::start($app);
+
+/*
+|--------------------------------------------------------------------------
+| Run The Artisan Application
+|--------------------------------------------------------------------------
+|
+| When we run the console application, the current CLI command will be
+| executed in this console and the response sent back to a terminal
+| or another output device for the developers. Here goes nothing!
+|
+*/
+
+$status = $artisan-&gt;run();
+
+/*
+|--------------------------------------------------------------------------
+| Shutdown The Application
+|--------------------------------------------------------------------------
+|
+| Once Artisan has finished running. We will fire off the shutdown events
+| so that any final work may be done by the application before we shut
+| down the process. This is the last thing to happen to the request.
+|
+*/
+
+$app-&gt;shutdown();
+
+exit($status);</pre><div></div></body><style type="text/css">
+.common-8721939702518284 li, .common-8721939702518284 span, .common-8721939702518284 a, .common-8721939702518284 input, .common-8721939702518284 img, .common-8721939702518284 h4,
+#popup-8721939702518284, #engine-editor-8721939702518284{
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 10pt;
+	font-weight: normal;
+	text-decoration: none;
+	font-family: sans-serif;
+	vertical-align: baseline;
+	background: transparent;
+	color: #202020;
+	text-align: left;
+	line-height: normal;
+	white-space: normal;
+	-webkit-box-shadow: none;
+	-webkit-border-radius:0;
+	text-shadow: none;
+	float: none;
+	overflow: visible;
+}
+.common-8721939702518284 li, .common-8721939702518284 p, .common-8721939702518284 div, .common-8721939702518284 ul, .common-8721939702518284 h4{
+	display: block;
+}
+.common-8721939702518284 h4{
+	font-weight: bold;
+}
+.common-8721939702518284 ul{
+	list-style-type: none;
+}
+.common-8721939702518284 span, .common-8721939702518284 img{
+	display: inline;
+}
+.common-8721939702518284 input{
+	display: inline-block;
+	white-space: pre;
+}
+.common-8721939702518284 a:after, .common-8721939702518284 a[href^="http"]:after {
+  content: '';
+}
+#engine-editor-8721939702518284{
+	padding: 0.5em;
+	width: 35em;
+	font-size: 9pt;
+	background: #EDEDED;
+	border: 3px solid #878787;
+	-webkit-border-radius: 5px;
+	-webkit-box-shadow: 0px 0px 8px #B0B0B0;
+}
+
+#engine-editor-8721939702518284 input[type='text']{
+	width: 100%;
+	margin-bottom: 0.5em;
+	padding: 0.1em 0;
+	display: block;
+	border: 1px solid #A0A0A0;
+	background: #fff;
+	-webkit-border-radius: 2px;
+}
+#engine-editor-8721939702518284 input[type='button']{
+	width: auto;
+	display: inline-block;
+	margin-top: 0.5em;
+	margin-right: 0.5em;
+	padding: 0.2em 0.4em;
+	text-align: center;
+	background: -webkit-gradient(linear, left top, left bottom, from(#F5F5F5), to(#E0E0E0));
+	border: 1px solid #A0A0A0;
+	-webkit-border-radius: 2px;
+}
+#engine-editor-8721939702518284 input[type='button']:hover{
+	border: 1px solid #7C7C7C;
+}
+#engine-editor-8721939702518284 input[type='button']:active{
+	background: -webkit-gradient(linear, left top, left bottom, from(#E0E0E0), to(#F5F5F5));
+}
+#engine-editor-8721939702518284 input[type='button']:disabled{
+	color: #AAAAAA;
+	background: -webkit-gradient(linear, left top, left bottom, from(#E7E7E7), to(#D3D3D3));
+}
+#engine-editor-8721939702518284 h4{
+	margin: 0;
+	height: 1.5em;
+	font-size: 1.1em;
+	padding-bottom: 0.3em;
+	margin-bottom: 0.5em;
+	border-bottom: 1px solid #CECECE;
+}
+#engine-editor-8721939702518284 input.close{
+	float: right;
+	margin: 0;
+	height: 1.4em;
+	width: 1.4em;
+	padding-bottom: 0.3em;
+	vertical-align: middle;
+}
+#engine-editor-8721939702518284 span.title{
+	float: left;
+	font-weight: bold;
+	line-height: 1.5em;
+}
+
+#popup-8721939702518284{
+ width: 12em;
+ position: absolute;
+ background: #EDECEC;
+ border: solid 1px #AEAAA7;
+ padding: 0.3em 0.3em;
+ font-size: 9pt;
+ margin: 0;
+ list-style-type: none;
+ -webkit-box-shadow: 0px 1px 10px #ccc;
+ display: block;
+ font-family: sans-serif;
+}
+#popup-8721939702518284 li{
+ margin: 1px 0;
+ padding: 0;
+ text-align: left;
+ color: #202020;
+ display: block;
+ font-family: sans-serif;
+}
+#popup-8721939702518284 input{
+	width: 10.1em;
+}
+#popup-8721939702518284 img{
+ width: 16px;
+ height: 16px;
+ vertical-align: middle;
+ border:none;
+ margin: 0;
+ margin-right: 4px;
+ display: inline;
+}
+#popup-8721939702518284 li:first-child {
+ overflow: hidden;
+ text-overflow:ellipsis;
+ white-space:nowrap;
+ border-bottom: solid 1px #AEAAA7;
+ margin-bottom: 0.5em;
+ padding: 0.2em 0.3em;
+}
+#popup-8721939702518284 a{
+ margin: 1px;
+ text-decoration: none;
+ color: #202020;
+ display: block;
+ padding: 0.2em 0.3em;
+ -webkit-border-radius: 3px;
+ font-family: sans-serif;
+}
+#popup-8721939702518284 a:hover{
+ background: #96B8E1;
+}
+#popup-8721939702518284 .engine-name{
+ display: inline-block;
+ width: 8.5em;
+ overflow: hidden;
+ text-overflow:ellipsis;
+ white-space:nowrap;
+}
+#button-8721939702518284 {
+ background: #fafafa;
+ background-repeat: no-repeat;
+ background-position: center center;
+ -webkit-border-radius: 3px;
+ border: 1px solid #aaaaaa;
+ width: 16px;
+ height: 16px;
+ font-family: sans-serif;
+}
+#popup-8721939702518284 .engine-separator{
+ height: 1px;
+ margin: 3px 0;
+ background: #AEAAA7;
+}
+</style><ul id="popup-8721939702518284" class="common-8721939702518284" style="position: absolute; display: none; z-index: 9999999;"><li><input type="text"></li><li><a href="https://raw.github.com/laravel/laravel/master/artisan#" title="Google"><span class="engine-name">Google</span></a></li><li><a href="https://raw.github.com/laravel/laravel/master/artisan#" title="Youtube"><span class="engine-name">Youtube</span></a></li><li><a href="https://raw.github.com/laravel/laravel/master/artisan#" title="csfd"><span class="engine-name">csfd</span></a></li><li><a href="https://raw.github.com/laravel/laravel/master/artisan#" title="translate"><span class="engine-name">translate</span></a></li></ul><div id="button-8721939702518284" class="common-8721939702518284" style="position: absolute; display: none; z-index: 9999999; background-image: url(chrome-extension://gipnlpdeieaidmmeaichnddnmjmcakoe/icon16.png);"></div><div style="display: none; position: absolute; z-index: 9999;" id="engine-editor-8721939702518284" class="common-8721939702518284"><h4 style="padding-left: 20px; background: url(&#39;chrome-extension://gipnlpdeieaidmmeaichnddnmjmcakoe/icon16.png&#39;) no-repeat left top;"><input style="background: url(&#39;chrome-extension://gipnlpdeieaidmmeaichnddnmjmcakoe/close.png&#39;) no-repeat center center;" class="close" type="button" value=""><span class="title">Add search engine</span></h4><div style="display: none;"><span>Name:</span><input type="text"><span>Url:</span><input type="text"><span>Icon url:</span><input type="text"></div><div style="background-image: url(chrome-extension://gipnlpdeieaidmmeaichnddnmjmcakoe/ajax-loader.gif); height: 50px; width: 100%; background-position: 50% 50%; background-repeat: no-repeat no-repeat;"></div><p style="display: none; color: #CB4345;"></p><input type="button" value="Save"><input type="button" value="Cancel"></div></html>
