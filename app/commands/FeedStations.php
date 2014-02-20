@@ -55,6 +55,7 @@ class FeedStations extends Command {
 		$numFeedStations = count($stations);
 		foreach ($stations as $id => $station)
 		{
+			$feed->insertStation($station);
 			$fuel = $this->option('fuel');
 			$this->info("Feeding station cbid: {$station['cbid']} with fuel - {$fuel} ({$id}/{$numFeedStations})");
 			$numEntries = $feed->feedStation($station['cbid'], $fuel);

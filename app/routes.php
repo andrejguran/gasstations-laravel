@@ -34,3 +34,4 @@ Route::get('feed', 'FeedController@feed');
 Route::get('stationdata/{cbid}/{fuel?}', 'FeedController@getStationData');
 Route::get('feedstation/{cbid}', 'FeedController@feedStation');
 Route::get('{fuel}.csv', 'HomeController@csv');
+Route::get('delete', 'HomeController@delete');

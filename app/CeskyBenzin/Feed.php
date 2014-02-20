@@ -16,15 +16,21 @@ class Feed {
     public function feedStations()
     {
         foreach ($this->stations as $cbid => &$station) {
-            if (false === Station::where('cbid', $cbid)->exists()) {
-                Station::create($station);
-            }
-
+            $this->insertStation($station);
 
             $station['numEntries'] = $this->feedStation($cbid);
         }
 
         return count($this->stations);
+    }
+
+    public function insertStation($station)
+    {
+        if (false === Station::where('cbid', $station['cbid'])->exists()) {
+            return Station::create($station);
+        }
+
+        return false;
     }
 
     public function feedStation($cbid, $fuel = 1)
@@ -62,6 +68,7 @@ class Feed {
             unset($matches[0]);
             $stations[(int)$matches[5]]['cbid'] = $matches[5];
             $stations[(int)$matches[5]]['name'] = $matches[1];
+            $stations[(int)$matches[5]]['region'] = $matches[4];
             $stations[(int)$matches[5]]['city'] = $matches[2];
             $stations[(int)$matches[5]]['address'] = $matches[3];
             $stations[(int)$matches[5]]['latitude'] = $matches[6];
