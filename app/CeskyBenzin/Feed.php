@@ -59,20 +59,21 @@ class Feed {
 
         $stations = array();
 
-        $pattern = "/var bublina = '(.*?)<br>(.*?)<br>(.*?)<br>(.*?)<br>.*\s.*'green', (\d{1,6}), bublina, 0 \);.*\s.*google\.maps\.LatLng\(([0-9]{2}\.[0-9]{0,10}), ([0-9]{2}\.[0-9]{0,10})\);/m";
+        $pattern = "/google\.maps\.LatLng\(([0-9]{2}\.[0-9]{0,10}), ([0-9]{2}\.[0-9]{0,10})\);.*\s.*var bublina = '(.*?)<br>(.*?)<br>(.*?)<br>(.*?)<br>.*\s.*'green', (\d{1,6}), bublina, 0 \);/m";
 
         $i = 0;
 
         while (preg_match($pattern, $site, $matches)) {
             $site = str_replace($matches[0], "", $site);
             unset($matches[0]);
-            $stations[(int)$matches[5]]['cbid'] = $matches[5];
-            $stations[(int)$matches[5]]['name'] = $matches[1];
-            $stations[(int)$matches[5]]['region'] = $matches[4];
-            $stations[(int)$matches[5]]['city'] = $matches[2];
-            $stations[(int)$matches[5]]['address'] = $matches[3];
-            $stations[(int)$matches[5]]['latitude'] = $matches[6];
-            $stations[(int)$matches[5]]['longtitude'] = $matches[7];
+
+            $stations[(int)$matches[7]]['cbid'] = $matches[7];
+            $stations[(int)$matches[7]]['name'] = $matches[3];
+            $stations[(int)$matches[7]]['region'] = $matches[6];
+            $stations[(int)$matches[7]]['city'] = $matches[4];
+            $stations[(int)$matches[7]]['address'] = $matches[5];
+            $stations[(int)$matches[7]]['latitude'] = $matches[1];
+            $stations[(int)$matches[7]]['longtitude'] = $matches[2];
         }
 
         $this->stations = $stations;

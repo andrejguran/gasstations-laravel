@@ -19,8 +19,8 @@ class CreateStationsTable extends Migration {
             $table->string('name');
             $table->string('city');
             $table->string('address');
-            $table->decimal('latitude');
-            $table->decimal('longtitude');
+            $table->decimal('latitude', 8, 4);
+            $table->decimal('longtitude', 8, 4);
 
             $table->timestamps();
         });

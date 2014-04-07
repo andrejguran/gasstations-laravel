@@ -27,7 +27,20 @@ class HomeController extends BaseController {
 		elseif ($fuel == 'natural')
 			$name = 'Natural 95';
 
-		$stations = DB::select('SELECT stations.id, stations.name, stations.region, stations.city, entries.fuel, entries.price, entries.added FROM stations LEFT JOIN entries ON stations.id = entries.station_id WHERE entries.fuel = ?', array($name));
+		$stations = DB::select(
+			'SELECT stations.id,
+					stations.name,
+					stations.region,
+					stations.city,
+					stations.latitude,
+					stations.longtitude,
+					stations.highway,
+					entries.fuel,
+					entries.price,
+					entries.added
+			FROM stations LEFT JOIN entries ON stations.id = entries.station_id WHERE entries.fuel = ?',
+			array($name)
+		);
 
 		return CSV::fromArray($stations)->render();
 	}
@@ -41,8 +54,9 @@ class HomeController extends BaseController {
 		$i = 0;
 		foreach ($stations as $station)
 		{
-				DB::delete('delete from entries WHERE station_id = ?', array($station->id));
-				DB::delete('delete from stations WHERE id = ?', array($station->id));
+			$i++;
+			DB::delete('delete from entries WHERE station_id = ?', array($station->id));
+			DB::delete('delete from stations WHERE id = ?', array($station->id));
 		}
 		echo $i;
 	}
